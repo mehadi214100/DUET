@@ -1,0 +1,53 @@
+1. Create Emp Table 
+-----------------------------------------------------------------------------------------
+CREATE TABLE Emp100(
+empno number,
+ename varchar2(50),
+job varchar2(50),
+hiredate date,
+mgr varchar2(50),
+sal number(6,2),
+deptno integer,
+constraint pk_depno primary key (empno)
+)
+
+Create Dept Table 
+-----------------------------------------------------------------------------------------
+create table dept100(
+deptno number,
+dname varchar2(50),
+loc varchar2(50),
+constraint forenkey_deptno foreign key (deptno) references  emp100(deptno)
+)
+
+2.Add check contraint to Emp table 
+---------------------------------------------------------------------------------------------
+alter table emp100
+add constraint ck_salary check (sal between 1000 and 15000) 
+
+3. Disable constraint 
+----------------------------------------------------------------------------------------------
+alter table emp100
+disable constraint  pk_empno  CASCADE;
+
+
+alter table dept100
+disable constraint forenkey_deptno  CASCADE;
+
+
+alter table emp100
+disable constraint ck_salary CASCADE;
+
+
+Enable Constraint 
+---------------------------------
+alter table emp100
+enable constraint  pk_empno  ;
+
+alter table emp100
+enable constraint  ck_salary ;
+
+alter table dept100
+enable constraint forenkey_deptno ;
+
+
