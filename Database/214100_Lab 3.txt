@@ -3,7 +3,7 @@ select distinct job
 from emp
 
 =============B==================
-select ename , sal, sal+(sal*15/100) as "Increased Salary"
+select ename,to_char(1.15*sal,'$99,999') as salary
 from emp
 
 ================C=============
