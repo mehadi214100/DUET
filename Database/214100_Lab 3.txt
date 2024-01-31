@@ -1,0 +1,45 @@
+==============A====================
+select distinct job
+from emp
+
+=============B==================
+select ename , sal, sal+(sal*15/100) as "Increased Salary"
+from emp
+
+================C=============
+select ename || job as "Employee & Job"
+from emp
+
+===============D================
+select ename , to_char(HIREDATE,'fmMon DD,YYYY.') as Join_Date
+from emp
+
+=============E==================
+select ename,length(ename) as "Name Length"  ,job, length(job) as "Job Length"
+from emp
+
+===============F===================
+select * 
+from emp
+where job='CLERK' or job='SALESMAN'
+
+===============G===============
+select * 
+from emp
+where EXTRACT(MONTH from HIREDATE) = 1
+
+===============H===================
+SELECT *
+FROM Emp
+WHERE Job not in 'MANAGER'
+
+=====================I==================
+SELECT *
+FROM Emp
+WHERE (Job = 'MANAGER' OR job = 'ANALYST')
+and sal between 2000 and 5000 and COMM not in Null
+
+============================J=================
+SELECT *
+FROM Emp
+WHERE ename like 'A____N'
