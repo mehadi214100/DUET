@@ -1,0 +1,33 @@
+==========Questation 1=================
+select * from emp
+where hiredate in(
+select hiredate from emp
+group by (hiredate)
+having count(hiredate)>1
+)
+
+==========Questation 2===================
+select * from emp
+where sal>(
+select sum(sal)+sum(comm)from emp
+where job = 'SALESMAN'
+)
+
+===========Questation 3==========
+select * from emp
+where sal in(
+select max(sal) from emp
+)
+
+==========Questation 4============
+select orders.ord_no,orders.purch_amt,customer.cust_name,customer.city
+from orders,customer
+where orders.customer_id = customer.customer_id and orders.purch_amt between 500 and 2000 
+
+===========Questation 5 ==========
+
+select * from orders
+where purch_amt >=(
+select avg(purch_amt)  from orders
+)
+
