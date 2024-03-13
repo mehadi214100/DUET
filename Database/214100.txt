@@ -1,0 +1,75 @@
+-----------Program 1 --------------
+Set serveroutput on
+DECLARE 
+num1 integer :=10;
+num2 integer :=47;
+num3 integer := 45;
+mx integer;
+BEGIN
+IF num1>=num2 and num1>=num3 THEN
+mx := num1;
+ELSIF num2>=num3 and num2>=num3 THEN
+mx := num2;
+ELSE 
+mx := num3;
+END IF;
+DBMS_OUTPUT.PUT_LINE('Result '||mx);
+END;
+/
+
+------------------Program 2 ---------------------
+Set serveroutput on
+DECLARE 
+total integer :=0;
+n integer;
+BEGIN
+n := &n_input;
+FOR i IN 1..n LOOP
+total := total + i;
+END LOOP;
+DBMS_OUTPUT.PUT_LINE('Result '||total);
+END;
+/
+
+-----------------Program 3 ------------
+DECLARE 
+type namesarray IS VARRAY(5) OF VARCHAR2(10);
+type id IS VARRAY(5) OF INTEGER(10);
+type cgpa IS VARRAY(5) OF INTEGER(10,2);
+names namesarray;
+marks cgpa ;
+ids id;
+total integer;
+BEGIN
+ids  := id(214100,214195,214145,214165,214197);
+names := namesarray('Mehadi', 'Raza', 'Tomal', 'Jahir', 'Sakib');
+marks:= cgpa(3.98, 3.97, 2.78, 2.87, 3.92);
+total := names.count;
+dbms_output.put_line('ID |'|| 'STUDENT NAME| ' || 'CGPA');
+FOR i in 1 .. total LOOP 
+dbms_output.put_line(ids(i)||'    '||names(i) || '     ' || marks(i));
+END LOOP;
+END;
+/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
