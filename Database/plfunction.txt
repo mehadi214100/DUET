@@ -1,0 +1,39 @@
+Function Create to display all information of an employee using a specific employee id 
+==========================================================================================
+CREATE OR REPLACE FUNCTION get_employee_info(p_emp_id IN NUMBER)
+RETURN VARCHAR2
+IS
+    v_output VARCHAR2(4000);
+    v_empno Emp.EMPNO%TYPE;
+    v_ename Emp.ENAME%TYPE;
+    v_job Emp.JOB%TYPE;
+    v_mgr Emp.MGR%TYPE;
+    v_hiredate Emp.HIREDATE%TYPE;
+    v_sal Emp.SAL%TYPE;
+    v_comm Emp.COMM%TYPE;
+    v_deptno Emp.DEPTNO%TYPE;
+BEGIN
+    SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+    INTO v_empno, v_ename, v_job, v_mgr, v_hiredate, v_sal, v_comm, v_deptno
+    FROM Emp
+    WHERE EMPNO = p_emp_id;
+
+    v_output := 'Employee ID: ' || v_empno || CHR(10) ||
+                'Name: ' || v_ename || CHR(10) ||
+                'Job: ' || v_job || CHR(10) ||
+                'Manager ID: ' || v_mgr || CHR(10) ||
+                'Hire Date: ' || TO_CHAR(v_hiredate, 'DD-MON-YYYY') || CHR(10) ||
+                'Salary: ' || v_sal || CHR(10) ||
+                'Commission: ' || v_comm || CHR(10) ||
+                'Department Number: ' || v_deptno;
+
+    RETURN v_output;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RETURN 'Employee not found.';
+END;
+/
+
+
+================Function Call ===================
+SELECT get_employee_info(EMP_ID) FROM dual;
